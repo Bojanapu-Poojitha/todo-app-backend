@@ -16,3 +16,11 @@ export const addTaskItem = async (newTask: ItemType): Promise<ItemType> => {
     ...newTask,
   };
 };
+
+export const getAllTasks = async():Promise<ItemType[]>=>{
+    const result = await itemsCollection.get();
+    const totalItems:ItemType[] =[];
+    
+    result.forEach((task)=>totalItems.push(task.data() as ItemType));
+    return totalItems;
+}
