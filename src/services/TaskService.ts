@@ -1,5 +1,7 @@
+
 import { itemsCollection } from "../config/todoFirebase";
 import { ItemType } from "../type/ItemType";
+import { db } from "../config/todoFirebase";
 
 export const addTaskItem = async (newTask: ItemType): Promise<ItemType> => {
   const setItems = itemsCollection.doc();
@@ -23,4 +25,8 @@ export const getAllTasks = async():Promise<ItemType[]>=>{
     
     result.forEach((task)=>totalItems.push(task.data() as ItemType));
     return totalItems;
+}
+
+export const deleteTask = async(id:string):Promise<void>=>{
+    await db.collection("dailyTask").doc(id).delete();
 }
