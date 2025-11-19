@@ -11,7 +11,7 @@ if (!servicepath) {
   throw new Error("FIREBASE_SERVICE_ACCOUNT_PATH is missing");
 }
 
-const serviceAccount = JSON.parse(fs.readFileSync(servicepath, "utf8"));
+const serviceAccount = JSON.parse(servicepath);
 
 initializeApp({
   credential: cert(serviceAccount),
