@@ -1,9 +1,17 @@
 import { initializeApp, cert } from "firebase-admin/app";
 import { getFirestore } from "firebase-admin/firestore";
-import fs, { readFileSync } from "fs";
+import fs from "fs";
+import dotenv from "dotenv";
 
+dotenv.config();
 
-const serviceAccount = JSON.parse(readFileSync('managetasks.json','utf8'));
+const servicepath = process.env.FIREBASE_SERVICE_ACCOUNT_PATH;
+
+if (!servicepath) {
+  throw new Error("FIREBASE_SERVICE_ACCOUNT_PATH is missing");
+}
+
+const serviceAccount = JSON.parse(fs.readFileSync(servicepath, "utf8"));
 
 initializeApp({
   credential: cert(serviceAccount),
