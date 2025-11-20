@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const servicepath = process.env.FIREBASE_SERVICE_ACCOUNT_PATH;
+const servicepath = process.env.FIREBASE_SERVICE_ACCOUNT_JSON;
 
 if (!servicepath) {
   throw new Error("FIREBASE_SERVICE_ACCOUNT_PATH is missing");
