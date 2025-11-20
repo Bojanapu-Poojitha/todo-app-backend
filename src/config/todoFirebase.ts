@@ -11,7 +11,7 @@ if (!servicePath) {
   throw new Error("FIREBASE_SERVICE_ACCOUNT_PATH environment variable is not set or empty.");
 }
 
-const serviceAccount = JSON.parse(fs.readFileSync(servicePath, "utf8"));
+const serviceAccount = JSON.parse(servicePath);
 
 initializeApp({
   credential: cert(serviceAccount),
