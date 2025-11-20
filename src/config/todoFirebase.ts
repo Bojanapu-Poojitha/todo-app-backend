@@ -11,6 +11,13 @@ if (!servicepath) {
   throw new Error("FIREBASE_SERVICE_ACCOUNT_PATH is missing");
 }
 
+let serviceAccountRender;
+try {
+  serviceAccountRender = JSON.parse(servicepath);
+} catch (error) {
+  console.error("error parsing FIREBASE_SERVICE_ACCOUNT_JSON:", error);
+  throw new Error("failed to parse Firebase service account.");
+}
 const serviceAccount = JSON.parse(fs.readFileSync(servicepath, "utf8"));
 
 initializeApp({
