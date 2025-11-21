@@ -9,3 +9,6 @@ jest.mock('../services/TaskService',()=>({
     deleteTask:jest.fn(),
     updateTask:jest.fn(),
 }));
+const app = express();
+app.use(express.json());
+app.use('/users',route);
