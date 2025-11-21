@@ -27,4 +27,19 @@ describe("All tasks service operations",()=>{
         expect(result.body.message).toBe("item created");
         expect(result.body.data).toEqual(newItem);
     })
+     test("/GET method,to return all tasks", async () => {
+      const allTasks = [
+        { title: "lunch", description: "this is for lunch food", status: "pending", priority: "medium", deadline: "2025-11-1" },
+        { title: "breakfast", description: "this is dosa as breakfast", status: "completed", priority: "high", deadline: "2025-11-2" },
+      ];
+
+ 
+      (getAllTasks as jest.Mock).mockResolvedValue(allTasks);
+
+      const response = await request(app).get("/users/tasks");
+
+      expect(response.status).toBe(200);
+      expect(response.body.message).toBe("the list of items are");
+      expect(response.body.data).toEqual(allTasks);
+    });
 })
