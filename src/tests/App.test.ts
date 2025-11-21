@@ -1,22 +1,18 @@
 import request from "supertest";
-import express from "express";
-import route from "../routes/Routers";
+
 import {
   addTaskItem,
   getAllTasks,
   deleteTask,
   updateTask,
 } from "../services/TaskService";
-
+import {app} from "../../src/App"; 
 jest.mock("../services/TaskService", () => ({
   addTaskItem: jest.fn(),
   getAllTasks: jest.fn(),
   deleteTask: jest.fn(),
   updateTask: jest.fn(),
 }));
-const app = express();
-app.use(express.json());
-app.use("/users", route);
 describe("All tasks service operations", () => {
   test("/POST method , to add items", async () => {
     const newItem = {
