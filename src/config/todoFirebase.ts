@@ -1,7 +1,7 @@
 import { initializeApp, cert } from "firebase-admin/app";
 import { getFirestore } from "firebase-admin/firestore";
-import fs from "fs";
 import dotenv from "dotenv";
+import fs, { readFileSync } from "fs";
 
 dotenv.config();
 
@@ -12,6 +12,7 @@ if (!servicePath) {
 }
 
 const serviceAccount = JSON.parse(servicePath);
+// const serviceAccount = JSON.parse(readFileSync('myToDoTasks.json','utf8'));
 
 initializeApp({
   credential: cert(serviceAccount),
