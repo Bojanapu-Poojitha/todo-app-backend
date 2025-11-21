@@ -36,10 +36,18 @@ describe("All tasks service operations",()=>{
  
       (getAllTasks as jest.Mock).mockResolvedValue(allTasks);
 
-      const response = await request(app).get("/users/tasks");
+      const getResponse = await request(app).get("/users/tasks");
 
-      expect(response.status).toBe(200);
-      expect(response.body.message).toBe("the list of items are");
-      expect(response.body.data).toEqual(allTasks);
+      expect(getResponse.status).toBe(200);
+      expect(getResponse.body.message).toBe("the list of items are");
+      expect(getResponse.body.data).toEqual(allTasks);
     });
+    test('/DELETE method, to delete a tasks using ID',async()=>{
+        const id ='34';
+        (deleteTask as jest.Mock).mockResolvedValue(undefined);
+        const deleteResult = await request(app).delete('/users/item/${id}');
+        expect(deleteResult.status).toBe(400);
+        expect(deleteResult.body.message).toBe('item deleted success fully');
+
+    })
 })
