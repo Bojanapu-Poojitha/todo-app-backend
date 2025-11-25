@@ -8,7 +8,7 @@
 - Update the particular or entire field using `PUT` method .
 
 
-### St up and Installation : 
+### Set up and Installation : 
 
 #### Cloning :
 
